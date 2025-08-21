@@ -1,0 +1,157 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: #f1eedc; /* Soft Cream - Light Theme Background */
+  --foreground: #393e46; /* Charcoal - Dark text on light background */
+  --card: rgba(255, 255, 255, 0.2); /* Glassmorphism Card with transparency */
+  --card-foreground: #4b5563; /* Text on glassmorphism cards */
+  --popover: rgba(255, 255, 255, 0.9); /* Semi-transparent popover */
+  --popover-foreground: #4b5563; /* Text on popover */
+  --primary: #bed7dc; /* Soft Blue - Primary accent color */
+  --primary-foreground: #393e46; /* Dark text on primary */
+  --secondary: #a0b2a1; /* Muted Green - Secondary accent */
+  --secondary-foreground: #393e46; /* Dark text on secondary */
+  --muted: rgba(241, 238, 220, 0.5); /* Muted background with transparency */
+  --muted-foreground: #6b7280; /* Muted text color */
+  --accent: #bed7dc; /* Soft Blue accent */
+  --accent-foreground: #393e46; /* Text on accent */
+  --destructive: #ef4444; /* Red for destructive actions */
+  --destructive-foreground: #ffffff; /* White text on destructive */
+  --border: rgba(57, 62, 70, 0.1); /* Subtle border with transparency */
+  --input: rgba(255, 255, 255, 0.8); /* Semi-transparent input background */
+  --ring: rgba(190, 215, 220, 0.5); /* Ring effect with primary color */
+  --chart-1: #bed7dc;
+  --chart-2: #a0b2a1;
+  --chart-3: #f1eedc;
+  --chart-4: #393e46;
+  --chart-5: #dfd0b8;
+  --radius: 0.75rem; /* Slightly larger radius for glassmorphism */
+  --sidebar: rgba(255, 255, 255, 0.1);
+  --sidebar-foreground: #4b5563;
+  --sidebar-primary: #bed7dc;
+  --sidebar-primary-foreground: #393e46;
+  --sidebar-accent: #a0b2a1;
+  --sidebar-accent-foreground: #393e46;
+  --sidebar-border: rgba(57, 62, 70, 0.1);
+  --sidebar-ring: rgba(190, 215, 220, 0.3);
+}
+
+.dark {
+  --background: #393e46; /* Charcoal - Dark Theme Background */
+  --foreground: #dfd0b8; /* Warm Beige - Light text on dark background */
+  --card: rgba(43, 45, 48, 0.3); /* Dark glassmorphism card */
+  --card-foreground: #dfd0b8; /* Light text on dark cards */
+  --popover: rgba(43, 45, 48, 0.9); /* Dark popover */
+  --popover-foreground: #dfd0b8; /* Light text on dark popover */
+  --primary: #dfd0b8; /* Warm Beige - Primary in dark mode */
+  --primary-foreground: #393e46; /* Dark text on light primary */
+  --secondary: #a7a8aa; /* Soft Gray - Secondary in dark mode */
+  --secondary-foreground: #dfd0b8; /* Light text on secondary */
+  --muted: rgba(57, 62, 70, 0.5); /* Muted dark background */
+  --muted-foreground: #9ca3af; /* Muted light text */
+  --accent: #dfd0b8; /* Warm Beige accent */
+  --accent-foreground: #393e46; /* Dark text on accent */
+  --destructive: #dc2626; /* Darker red for dark mode */
+  --destructive-foreground: #dfd0b8; /* Light text on destructive */
+  --border: rgba(223, 208, 184, 0.1); /* Subtle light border */
+  --input: rgba(43, 45, 48, 0.8); /* Dark input background */
+  --ring: rgba(223, 208, 184, 0.3); /* Ring effect with warm beige */
+  --chart-1: #dfd0b8;
+  --chart-2: #a7a8aa;
+  --chart-3: #393e46;
+  --chart-4: #2b2d30;
+  --chart-5: #bed7dc;
+  --sidebar: rgba(43, 45, 48, 0.2);
+  --sidebar-foreground: #dfd0b8;
+  --sidebar-primary: #dfd0b8;
+  --sidebar-primary-foreground: #393e46;
+  --sidebar-accent: #a7a8aa;
+  --sidebar-accent-foreground: #dfd0b8;
+  --sidebar-border: rgba(223, 208, 184, 0.1);
+  --sidebar-ring: rgba(223, 208, 184, 0.2);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    scroll-behavior: smooth;
+    background-image: radial-gradient(circle at 1px 1px, rgba(0, 0, 0, 0.15) 1px, transparent 0);
+    background-size: 20px 20px;
+  }
+
+  .glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .glass-dark {
+    background: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .animate-fade-up {
+    animation: fadeUp 0.6s ease-out forwards;
+  }
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-bounce-slow {
+    animation: bounce 2s infinite;
+  }
+}
