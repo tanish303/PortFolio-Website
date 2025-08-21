@@ -1,19 +1,19 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Playfair_Display, Source_Sans_3 } from "next/font/google"
+import { Cinzel, Inter } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 
-const playfair = Playfair_Display({
+const cinzel = Cinzel({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-playfair",
+  variable: "--font-cinzel",
 })
 
-const sourceSans = Source_Sans_3({
+const inter = Inter({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-source-sans",
+  variable: "--font-inter",
 })
 
 export const metadata: Metadata = {
@@ -39,13 +39,13 @@ export default function RootLayout({
       <head>
         <style>{`
 html {
-  font-family: ${sourceSans.style.fontFamily};
-  --font-sans: ${sourceSans.variable};
-  --font-serif: ${playfair.variable};
+  font-family: ${inter.style.fontFamily};
+  --font-sans: ${inter.variable};
+  --font-serif: ${cinzel.variable};
 }
         `}</style>
       </head>
-      <body className={`${playfair.variable} ${sourceSans.variable} antialiased`}>
+      <body className={`${cinzel.variable} ${inter.variable} antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           {children}
         </ThemeProvider>

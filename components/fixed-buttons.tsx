@@ -38,8 +38,9 @@ export function FixedButtons() {
           size="sm"
           className={cn(
             "rounded-full w-12 h-12 p-0 backdrop-blur-md transition-all duration-300",
-            "bg-card/80 border border-border/50 hover:bg-primary/20 hover:scale-110",
-            "shadow-lg hover:shadow-xl",
+            theme === "dark"
+              ? "bg-primary/20 border border-primary/30 hover:bg-card/40 hover:scale-110"
+              : "bg-accent/20 border border-accent/30 hover:bg-muted/40 hover:scale-110",
           )}
           title="Download Resume"
         >
@@ -52,8 +53,9 @@ export function FixedButtons() {
           size="sm"
           className={cn(
             "rounded-full w-12 h-12 p-0 backdrop-blur-md transition-all duration-300",
-            "bg-card/80 border border-border/50 hover:bg-primary/20 hover:scale-110",
-            "shadow-lg hover:shadow-xl",
+            theme === "dark"
+              ? "bg-primary/20 border border-primary/30 hover:bg-card/40 hover:scale-110"
+              : "bg-accent/20 border border-accent/30 hover:bg-muted/40 hover:scale-110",
           )}
           title={isSoundOn ? "Turn Sound Off" : "Turn Sound On"}
         >
@@ -66,8 +68,10 @@ export function FixedButtons() {
           size="sm"
           className={cn(
             "rounded-full w-12 h-12 p-0 backdrop-blur-md transition-all duration-300",
-            "bg-card/80 border border-border/50 hover:bg-primary/20 hover:scale-110",
-            "shadow-lg hover:shadow-xl animate-pulse",
+            theme === "dark"
+              ? "bg-primary/20 border border-primary/30 hover:bg-card/40 hover:scale-110"
+              : "bg-accent/20 border border-accent/30 hover:bg-muted/40 hover:scale-110",
+            "animate-pulse",
           )}
           title="Ask AI Assistant"
         >
@@ -80,8 +84,9 @@ export function FixedButtons() {
           size="sm"
           className={cn(
             "rounded-full w-12 h-12 p-0 backdrop-blur-md transition-all duration-300",
-            "bg-card/80 border border-border/50 hover:bg-primary/20 hover:scale-110",
-            "shadow-lg hover:shadow-xl",
+            theme === "dark"
+              ? "bg-primary/20 border border-primary/30 hover:bg-card/40 hover:scale-110"
+              : "bg-accent/20 border border-accent/30 hover:bg-muted/40 hover:scale-110",
           )}
           title="Toggle Theme"
         >
