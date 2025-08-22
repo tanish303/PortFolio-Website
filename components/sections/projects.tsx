@@ -19,67 +19,30 @@ interface Project {
 }
 
 const projects: Project[] = [
-  {
-    id: "1",
-    title: "AI Chat Application",
-    description: "A modern chat application powered by AI with real-time messaging and intelligent responses.",
-    image: "/placeholder.svg?height=300&width=400",
-    video: "/placeholder.svg?height=300&width=400",
-    technologies: ["Next.js", "TypeScript", "OpenAI", "WebSocket"],
-    githubUrl: "https://github.com/tanish/ai-chat",
-    liveUrl: "https://ai-chat-demo.vercel.app",
-  },
-  {
-    id: "2",
-    title: "E-commerce Dashboard",
-    description:
-      "A comprehensive dashboard for managing e-commerce operations with analytics and inventory management.",
-    image: "/placeholder.svg?height=300&width=400",
-    video: "/placeholder.svg?height=300&width=400",
-    technologies: ["React", "Node.js", "MongoDB", "Chart.js"],
-    githubUrl: "https://github.com/tanish/ecommerce-dashboard",
-    liveUrl: "https://ecommerce-dashboard-demo.vercel.app",
-  },
-  {
-    id: "3",
-    title: "Task Management App",
-    description: "A collaborative task management application with team features and project tracking.",
-    image: "/placeholder.svg?height=300&width=400",
-    video: "/placeholder.svg?height=300&width=400",
-    technologies: ["Vue.js", "Firebase", "Tailwind CSS", "PWA"],
-    githubUrl: "https://github.com/tanish/task-manager",
-    liveUrl: "https://task-manager-demo.vercel.app",
-  },
-  {
-    id: "4",
-    title: "Weather Forecast App",
-    description: "A beautiful weather application with detailed forecasts and interactive maps.",
-    image: "/placeholder.svg?height=300&width=400",
-    video: "/placeholder.svg?height=300&width=400",
-    technologies: ["React Native", "Weather API", "Maps SDK", "Redux"],
-    githubUrl: "https://github.com/tanish/weather-app",
-    liveUrl: "https://weather-app-demo.vercel.app",
-  },
-  {
-    id: "5",
-    title: "Portfolio Website",
-    description: "A modern portfolio website with glassmorphism design and smooth animations.",
-    image: "/placeholder.svg?height=300&width=400",
-    video: "/placeholder.svg?height=300&width=400",
-    technologies: ["Next.js", "Tailwind CSS", "Framer Motion", "TypeScript"],
-    githubUrl: "https://github.com/tanish/portfolio",
-    liveUrl: "https://tanish-portfolio.vercel.app",
-  },
-  {
-    id: "6",
-    title: "Blockchain Voting System",
-    description: "A secure voting system built on blockchain technology with transparency and immutability.",
-    image: "/placeholder.svg?height=300&width=400",
-    video: "/placeholder.svg?height=300&width=400",
-    technologies: ["Solidity", "Web3.js", "React", "Ethereum"],
-    githubUrl: "https://github.com/tanish/blockchain-voting",
-    liveUrl: "https://blockchain-voting-demo.vercel.app",
-  },
+{
+  id: "1",
+  title: "TweniQ",
+  description: "A dual-mode social and professional networking platform. TweniQ allows users to switch between social and professional profiles, with unique feeds, interactions, and post types for each mode. Features include real-time chat, polls, likes, saved posts, followers/following, and profile customization.",
+  image: "/tweniq.png", // place your project screenshot here in /public/projects/
+  video: "/projects/tweniq-demo.mp4", // optional demo video if you have one
+  technologies: ["React", "JavaScript", "Tailwind CSS", "Node.js", "Express", "MongoDB", "Socket.io"],
+  githubUrl: "https://github.com/tanish303/tweniq",
+  liveUrl: "https://tweniq.vercel.app",
+},
+
+{
+  id: "2",
+  title: "CopyWizz",
+  description: "A desktop assistant built with Electron and React that instantly provides AI-powered explanations for copied text. It features a global hotkey, toast-style responses, persistent query history with favoriting, safe-save storage, customizable API keys, and OS-level auto-start integration.",
+  image: "/copywizz.png", // screenshot in public/projects/
+  video: "/projects/copywizz-demo.mp4", // optional demo video/gif
+  technologies: ["Electron", "React", "Tailwind CSS", "Node.js", "Gemini API", "JavaScript"],
+  githubUrl: "https://github.com/tanish303/CopyWizz", // update if repo link differs
+  liveUrl: "", // leave empty since it's a desktop app
+},
+ 
+  
+  
 ]
 
 export function Projects() {

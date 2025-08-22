@@ -12,8 +12,7 @@ interface Experience {
   location: string
   duration: string
   type: string
-  description: string
-  highlights: string[]
+  description: string[]
   technologies: string[]
   companyUrl?: string
 }
@@ -21,58 +20,21 @@ interface Experience {
 const experiences: Experience[] = [
   {
     id: "1",
-    role: "Senior Full Stack Developer",
-    company: "TechCorp Solutions",
-    location: "San Francisco, CA",
-    duration: "Jan 2023 - Present",
-    type: "Full-time",
-    description:
-      "Leading development of AI-powered web applications and managing a team of 5 developers. Architecting scalable solutions for enterprise clients.",
-    highlights: [
-      "Increased application performance by 40% through optimization",
-      "Led migration to microservices architecture",
-      "Mentored junior developers and conducted code reviews",
-      "Implemented CI/CD pipelines reducing deployment time by 60%",
-    ],
-    technologies: ["React", "Node.js", "AWS", "Docker", "PostgreSQL", "TypeScript"],
-    companyUrl: "https://techcorp.example.com",
-  },
-  {
-    id: "2",
-    role: "Frontend Developer",
-    company: "StartupXYZ",
-    location: "Remote",
-    duration: "Jun 2021 - Dec 2022",
-    type: "Full-time",
-    description:
-      "Developed responsive web applications and collaborated with design teams to create intuitive user interfaces for a fast-growing startup.",
-    highlights: [
-      "Built 15+ responsive web applications from scratch",
-      "Collaborated with UX/UI designers to improve user experience",
-      "Implemented real-time features using WebSocket technology",
-      "Reduced bundle size by 35% through code splitting and optimization",
-    ],
-    technologies: ["Vue.js", "JavaScript", "Tailwind CSS", "Firebase", "Figma"],
-    companyUrl: "https://startupxyz.example.com",
-  },
-  {
-    id: "3",
-    role: "Web Developer Intern",
-    company: "Digital Agency Pro",
-    location: "New York, NY",
-    duration: "Jan 2021 - May 2021",
+    role: "Full Stack Developer",
+    company: "CODINGBLOCKS",
+    location: "Delhi, India | Remote",
+    duration: "June 2024 - August 2024",
     type: "Internship",
-    description:
-      "Assisted in developing client websites and learned modern web development practices in a professional agency environment.",
-    highlights: [
-      "Contributed to 8 client projects during internship",
-      "Learned agile development methodologies",
-      "Gained experience with version control and team collaboration",
-      "Received outstanding performance review and job offer",
+   
+    description: [
+      "Gained hands-on experience in HTML, CSS, and JavaScript, building responsive and user-friendly web applications",
+      "Actively participated in various projects, enhancing problem-solving abilities, coding skills, and understanding of best practices while collaborating with a team to deliver polished web solutions.",
+      
     ],
-    technologies: ["HTML", "CSS", "JavaScript", "WordPress", "PHP"],
-    companyUrl: "https://digitalagencypro.example.com",
+    technologies: ["React", "Node.js", "Tailwind CSS", "JavaScript"],
+    companyUrl: "https://www.codingblocks.com/",
   },
+  
 ]
 
 export function Experience() {
@@ -139,17 +101,15 @@ export function Experience() {
                     </div>
                   </div>
 
-                  {/* Description */}
-                  <p className="text-muted-foreground leading-relaxed">{exp.description}</p>
 
-                  {/* Highlights */}
+                  {/* Description */}
                   <div className="space-y-2">
-                    <h4 className="font-semibold text-foreground">Key Achievements:</h4>
+                    <h4 className="font-semibold text-foreground">Description:</h4>
                     <ul className="space-y-1">
-                      {exp.highlights.map((highlight, idx) => (
+                      {exp.description.map((description, idx) => (
                         <li key={idx} className="flex items-start gap-2 text-sm text-muted-foreground">
                           <span className="text-primary mt-1.5 text-xs">▸</span>
-                          <span>{highlight}</span>
+                          <span>{description}</span>
                         </li>
                       ))}
                     </ul>

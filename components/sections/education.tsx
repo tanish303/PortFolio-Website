@@ -12,40 +12,39 @@ interface Education {
   percentage: string
   year: string
   description: string
-  achievements: string[]
 }
 
 const education: Education[] = [
+ {
+  id: "1",
+  degree: "High School",
+  school: "Sunhill Academy School",
+  address: "Alwar , Rajasthan, India",
+  percentage: "92%",
+  year: "2008 - 2019",
+  description: "Passed 10th grade with 92% marks.",
+},
+
   {
-    id: "1",
-    degree: "Bachelor of Technology in Computer Science",
-    school: "Stanford University",
-    address: "Stanford, CA, USA",
-    percentage: "3.8 GPA",
-    year: "2019 - 2023",
-    description: "Specialized in Artificial Intelligence and Machine Learning with focus on web technologies.",
-    achievements: [
-      "Dean's List for 6 consecutive semesters",
-      "President of Computer Science Society",
-      "Winner of Annual Hackathon 2022",
-      "Published research paper on AI applications",
-    ],
-  },
-  {
-    id: "2",
-    degree: "High School Diploma",
-    school: "Tech Valley High School",
-    address: "San Jose, CA, USA",
-    percentage: "95.2%",
-    year: "2017 - 2019",
-    description: "Focused on Mathematics, Physics, and Computer Science with advanced placement courses.",
-    achievements: [
-      "Valedictorian of graduating class",
-      "National Merit Scholar",
-      "Captain of Programming Club",
-      "State-level Science Olympiad winner",
-    ],
-  },
+  id: "2",
+  degree: "Senior Secondary",
+  school: "Children Academy School",
+  address: "Alwar , Rajasthan, India",
+  percentage: "81%",
+  year: "2019 - 2021",
+  description: "Passed 12th grade with 81% marks.",
+},
+{
+  id: "3",
+  degree: "B.Tech in Computer Science and Engineering",
+  school: "BML Munjal University",
+  address: "Gurugram, Haryana, India",
+  percentage: "7.53 CGPA",
+  year: "2022 - 2026",
+  description: "Pursuing B.Tech in Computer Science and Engineering with a current CGPA of 7.53.",
+}
+
+
 ]
 
 export function Education() {
@@ -124,18 +123,7 @@ export function Education() {
                     {/* Description */}
                     <p className="text-muted-foreground leading-relaxed">{edu.description}</p>
 
-                    {/* Achievements */}
-                    <div className="space-y-3">
-                      <h4 className="font-semibold text-foreground">Key Achievements:</h4>
-                      <div className="grid sm:grid-cols-2 gap-2">
-                        {edu.achievements.map((achievement, idx) => (
-                          <div key={idx} className="flex items-start gap-2 text-sm text-muted-foreground">
-                            <span className="text-primary mt-1.5 text-xs">▸</span>
-                            <span>{achievement}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
+                    
                   </div>
 
                   {/* Glow Effect */}
