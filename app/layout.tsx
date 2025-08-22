@@ -1,13 +1,14 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Cinzel, Inter } from "next/font/google"
+import { Anton, Inter } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 
-const cinzel = Cinzel({
+const anton = Anton({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-cinzel",
+  variable: "--font-anton",
+  weight: "400",
 })
 
 const inter = Inter({
@@ -40,12 +41,12 @@ export default function RootLayout({
         <style>{`
 html {
   font-family: ${inter.style.fontFamily};
-  --font-sans: ${inter.variable};
-  --font-serif: ${cinzel.variable};
+  --font-sans: ${anton.variable};
+  --font-serif: ${inter.variable};
 }
         `}</style>
       </head>
-      <body className={`${cinzel.variable} ${inter.variable} antialiased`}>
+      <body className={`${anton.variable} ${inter.variable} antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           {children}
         </ThemeProvider>

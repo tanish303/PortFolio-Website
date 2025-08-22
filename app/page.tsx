@@ -23,25 +23,37 @@ export default function Portfolio() {
           <Hero />
         </section>
 
+        <div className="section-divider" />
+
         <section id="projects">
           <Projects />
         </section>
+
+        <div className="section-divider" />
 
         <section id="skills">
           <Skills />
         </section>
 
+        <div className="section-divider" />
+
         <section id="experience">
           <Experience />
         </section>
+
+        <div className="section-divider" />
 
         <section id="education">
           <Education />
         </section>
 
+        <div className="section-divider" />
+
         <section id="guestbook">
           <Guestbook />
         </section>
+
+        <div className="section-divider" />
 
         <section id="contact">
           <Contact />
