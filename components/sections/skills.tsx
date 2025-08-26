@@ -1,8 +1,9 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Card } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
+import Heatmap from "@/components/Heatmap"
 
 interface Skill {
   name: string
@@ -26,34 +27,27 @@ const skills: Skill[] = [
   { name: "Git", icon: "📝", category: "Tools", level: 92 },
 ]
 
-// Generate dummy LeetCode-style heatmap data
-const generateHeatmapData = () => {
-  const data = []
-  const today = new Date()
-  const startDate = new Date(today.getFullYear() - 1, today.getMonth(), today.getDate())
-
-  for (let d = new Date(startDate); d <= today; d.setDate(d.getDate() + 1)) {
-    const submissions = Math.floor(Math.random() * 8) // 0-7 submissions per day
-    data.push({
-      date: new Date(d).toISOString().split("T")[0],
-      count: submissions,
-    })
-  }
-  return data
-}
-
-const heatmapData = generateHeatmapData()
-
 export function Skills() {
+  const [contributions, setContributions] = useState<{ date: string; count: number }[]>([])
+  const [yearTotal, setYearTotal] = useState<number | null>(null)
   const [hoveredSkill, setHoveredSkill] = useState<string | null>(null)
 
-  const getIntensityClass = (count: number) => {
-    if (count === 0) return "bg-muted/20"
-    if (count <= 2) return "bg-primary/30"
-    if (count <= 4) return "bg-primary/60"
-    if (count <= 6) return "bg-primary/80"
-    return "bg-primary"
-  }
+  useEffect(() => {
+    async function fetchContributions() {
+      try {
+        const res = await fetch("https://github-contributions-api.jogruber.de/v4/tanish303")
+        const data = await res.json()
+        setContributions(data.contributions)
+
+        // Get this year's total contributions from API
+        const yearKey = String(new Date().getFullYear())
+        setYearTotal(data.total?.[yearKey] ?? null)
+      } catch (error) {
+        console.error("Error fetching contributions:", error)
+      }
+    }
+    fetchContributions()
+  }, [])
 
   const skillCategories = Array.from(new Set(skills.map((skill) => skill.category)))
 
@@ -69,38 +63,22 @@ export function Skills() {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12">
-          {/* LeetCode Heatmap */}
-          <Card className="p-6 bg-card/40 backdrop-blur-md border border-border/50 animate-fade-up">
-            <h3 className="font-serif text-2xl font-semibold mb-6 text-center">Coding Activity</h3>
-            <div className="space-y-4">
-              <div className="text-sm text-muted-foreground text-center">
-                {heatmapData.filter((d) => d.count > 0).length} contributions in the last year
-              </div>
-              <div className="grid grid-cols-53 gap-1 max-w-full overflow-x-auto">
-                {heatmapData.map((day, index) => (
-                  <div
-                    key={index}
-                    className={cn(
-                      "w-3 h-3 rounded-sm transition-all duration-200 hover:scale-125",
-                      getIntensityClass(day.count),
-                    )}
-                    title={`${day.date}: ${day.count} contributions`}
-                  />
-                ))}
-              </div>
-              <div className="flex items-center justify-between text-xs text-muted-foreground">
-                <span>Less</span>
-                <div className="flex space-x-1">
-                  <div className="w-3 h-3 rounded-sm bg-muted/20" />
-                  <div className="w-3 h-3 rounded-sm bg-primary/30" />
-                  <div className="w-3 h-3 rounded-sm bg-primary/60" />
-                  <div className="w-3 h-3 rounded-sm bg-primary/80" />
-                  <div className="w-3 h-3 rounded-sm bg-primary" />
-                </div>
-                <span>More</span>
-              </div>
-            </div>
-          </Card>
+          {/* GitHub Heatmap */}
+          {/* GitHub Heatmap */}
+<Card className="p-6 bg-card/40 backdrop-blur-md border border-border/50 animate-fade-up">
+  <div className="text-center mb-4">
+    <h3 className="font-serif text-2xl font-semibold">GitHub Activity</h3>
+    <p className="text-sm text-muted-foreground">
+      {yearTotal !== null
+        ? `${yearTotal} contributions in the last year`
+        : "Loading..."}
+    </p>
+  </div>
+
+  <Heatmap contributions={contributions} />
+</Card>
+
+
 
           {/* Skills Grid */}
           <div className="space-y-8 animate-fade-up" style={{ animationDelay: "200ms" }}>
