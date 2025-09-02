@@ -60,85 +60,99 @@ export function Projects() {
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
-            <Card
-              key={project.id}
-              className={cn(
-                "group relative overflow-hidden transition-all duration-500",
-                "bg-card/40 backdrop-blur-md border border-border/50",
-                "hover:bg-card/60 hover:scale-105 hover:shadow-2xl",
-                "animate-fade-up",
-              )}
-              style={{ animationDelay: `${index * 100}ms` }}
-              onMouseEnter={() => setHoveredProject(project.id)}
-              onMouseLeave={() => setHoveredProject(null)}
+        {/* Projects Grid */}
+<div className="flex flex-wrap justify-center gap-12">
+  {projects.map((project, index) => (
+    <Card
+      key={project.id}
+      className={cn(
+        "group relative overflow-hidden transition-all duration-500",
+        "bg-card/40 backdrop-blur-md border border-border/50",
+        "hover:bg-card/60 hover:scale-105 hover:shadow-2xl",
+        "animate-fade-up",
+        "w-[320px] h-[480px]" // 👈 set width & height for consistent size
+      )}
+      style={{ animationDelay: `${index * 100}ms` }}
+      onMouseEnter={() => setHoveredProject(project.id)}
+      onMouseLeave={() => setHoveredProject(null)}
+    >
+      {/* Project Image/Video */}
+      <div className="relative h-40 overflow-hidden"> {/* 👈 reduced height */}
+        <img
+          src={project.image || "/placeholder.svg"}
+          alt={project.title}
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+        />
+        {hoveredProject === project.id && project.video && (
+          <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+            <Button size="sm" className="rounded-full">
+              <Play className="h-4 w-4 mr-2" />
+              Play Demo
+            </Button>
+          </div>
+        )}
+      </div>
+
+      {/* Project Content */}
+      <div className="p-4 space-y-3"> {/* 👈 reduced padding */}
+        <h3 className="font-serif text-lg font-semibold group-hover:text-primary transition-colors">
+          {project.title}
+        </h3>
+
+        <p className="text-muted-foreground text-xs leading-relaxed line-clamp-4">
+          {project.description}
+        </p>
+
+        {/* Technologies */}
+        <div className="flex flex-wrap gap-1">
+          {project.technologies.map((tech) => (
+            <Badge
+              key={tech}
+              variant="secondary"
+              className="text-[10px] px-2 py-0.5 bg-secondary/20 hover:bg-secondary/30 transition-colors"
             >
-              {/* Project Image/Video */}
-              <div className="relative h-48 overflow-hidden">
-                <img
-                  src={project.image || "/placeholder.svg"}
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                {hoveredProject === project.id && project.video && (
-                  <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-                    <Button size="sm" className="rounded-full">
-                      <Play className="h-4 w-4 mr-2" />
-                      Play Demo
-                    </Button>
-                  </div>
-                )}
-              </div>
-
-              {/* Project Content */}
-              <div className="p-6 space-y-4">
-                <h3 className="font-serif text-xl font-semibold group-hover:text-primary transition-colors">
-                  {project.title}
-                </h3>
-
-                <p className="text-muted-foreground text-sm leading-relaxed">{project.description}</p>
-
-                {/* Technologies */}
-                <div className="flex flex-wrap gap-2">
-                  {project.technologies.map((tech) => (
-                    <Badge
-                      key={tech}
-                      variant="secondary"
-                      className="text-xs bg-secondary/20 hover:bg-secondary/30 transition-colors"
-                    >
-                      {tech}
-                    </Badge>
-                  ))}
-                </div>
-
-                {/* Action Buttons */}
-                <div className="flex space-x-3 pt-2">
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    className="flex-1 bg-card/20 backdrop-blur-sm hover:bg-card/40"
-                    asChild
-                  >
-                    <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                      <Github className="h-4 w-4 mr-2" />
-                      Code
-                    </a>
-                  </Button>
-                  <Button size="sm" className="flex-1 bg-primary/20 hover:bg-primary/30 backdrop-blur-sm" asChild>
-                    <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                      <ExternalLink className="h-4 w-4 mr-2" />
-                      Live
-                    </a>
-                  </Button>
-                </div>
-              </div>
-
-              {/* Glow Effect */}
-              <div className="absolute inset-0 -z-10 bg-gradient-to-r from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            </Card>
+              {tech}
+            </Badge>
           ))}
         </div>
+
+        {/* Action Buttons */}
+        <div className="flex space-x-2 pt-2">
+          {/* GitHub Button */}
+          <Button
+            size="sm"
+            variant="outline"
+            className="flex-1 bg-card/20 backdrop-blur-sm hover:bg-card/40 text-xs"
+            asChild
+          >
+            <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+              <Github className="h-3 w-3 mr-1" />
+              Code
+            </a>
+          </Button>
+
+          {/* Live Button - only if URL exists */}
+          {project.liveUrl && (
+            <Button
+              size="sm"
+              className="flex-1 bg-primary/20 hover:bg-primary/30 backdrop-blur-sm text-xs"
+              asChild
+            >
+              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                <ExternalLink className="h-3 w-3 mr-1" />
+                Live
+              </a>
+            </Button>
+          )}
+        </div>
+      </div>
+
+      {/* Glow Effect */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+    </Card>
+  ))}
+</div>
+
       </div>
     </section>
   )

@@ -16,7 +16,6 @@ interface GuestbookEntry {
   name: string
   message: string
   timestamp: Date
-  likes: number
 }
 
 // Initial dummy data for the guestbook
@@ -26,50 +25,28 @@ const initialEntries: GuestbookEntry[] = [
     name: "Sarah Chen",
     message: "Amazing portfolio! The glassmorphism design is absolutely stunning. Love the smooth animations!",
     timestamp: new Date("2024-01-15"),
-    likes: 12,
   },
   {
     id: "2",
     name: "Alex Rodriguez",
     message: "Your AI projects are impressive. The attention to detail in the UI/UX is remarkable.",
     timestamp: new Date("2024-01-14"),
-    likes: 8,
   },
   {
     id: "3",
     name: "Emily Johnson",
     message: "The interactive elements and theme switching work flawlessly. Great job on the responsive design!",
     timestamp: new Date("2024-01-13"),
-    likes: 15,
   },
-  {
-    id: "4",
-    name: "Michael Kim",
-    message: "Love the LeetCode heatmap integration. Your skills section is very well organized.",
-    timestamp: new Date("2024-01-12"),
-    likes: 6,
-  },
-  {
-    id: "5",
-    name: "Jessica Wang",
-    message: "The contact form with confetti effect is delightful! Such attention to user experience.",
-    timestamp: new Date("2024-01-11"),
-    likes: 9,
-  },
+  
 ]
 
 export function Guestbook() {
   const [entries, setEntries] = useState<GuestbookEntry[]>(initialEntries)
   const [newEntry, setNewEntry] = useState({ name: "", message: "" })
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [likedEntries, setLikedEntries] = useState<Set<string>>(new Set())
 
-  const stats = {
-    totalVisitors: 1247,
-    totalMessages: entries.length,
-    totalLikes: entries.reduce((sum, entry) => sum + entry.likes, 0),
-    avgRating: 4.8,
-  }
+  
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -85,7 +62,6 @@ export function Guestbook() {
       name: newEntry.name,
       message: newEntry.message,
       timestamp: new Date(),
-      likes: 0,
     }
 
     setEntries((prev) => [entry, ...prev])
@@ -93,13 +69,7 @@ export function Guestbook() {
     setIsSubmitting(false)
   }
 
-  const handleLike = (entryId: string) => {
-    if (likedEntries.has(entryId)) return
-
-    setEntries((prev) => prev.map((entry) => (entry.id === entryId ? { ...entry, likes: entry.likes + 1 } : entry)))
-    setLikedEntries((prev) => new Set([...prev, entryId]))
-  }
-
+  
   const formatDate = (date: Date) => {
     return new Intl.DateTimeFormat("en-US", {
       month: "short",
@@ -122,48 +92,7 @@ export function Guestbook() {
         <div className="max-w-6xl mx-auto grid lg:grid-cols-3 gap-8">
           {/* Stats Cards */}
           <div className="lg:col-span-1 space-y-6">
-            {/* Portfolio Stats */}
-            <Card className="p-6 bg-card/40 backdrop-blur-md border border-border/50 animate-fade-up">
-              <h3 className="font-serif text-xl font-semibold mb-4">Portfolio Stats</h3>
-              <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <Users className="h-4 w-4 text-primary" />
-                    <span className="text-sm">Total Visitors</span>
-                  </div>
-                  <Badge variant="secondary" className="bg-primary/20">
-                    {stats.totalVisitors.toLocaleString()}
-                  </Badge>
-                </div>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <MessageSquare className="h-4 w-4 text-primary" />
-                    <span className="text-sm">Messages</span>
-                  </div>
-                  <Badge variant="secondary" className="bg-primary/20">
-                    {stats.totalMessages}
-                  </Badge>
-                </div>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <Heart className="h-4 w-4 text-primary" />
-                    <span className="text-sm">Total Likes</span>
-                  </div>
-                  <Badge variant="secondary" className="bg-primary/20">
-                    {stats.totalLikes}
-                  </Badge>
-                </div>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <Star className="h-4 w-4 text-primary" />
-                    <span className="text-sm">Avg Rating</span>
-                  </div>
-                  <Badge variant="secondary" className="bg-primary/20">
-                    {stats.avgRating}/5
-                  </Badge>
-                </div>
-              </div>
-            </Card>
+           
 
             {/* Add Message Form */}
             <Card
@@ -253,19 +182,7 @@ export function Guestbook() {
                           <p className="text-xs text-muted-foreground">{formatDate(entry.timestamp)}</p>
                         </div>
                       </div>
-                      <Button
-                        size="sm"
-                        variant="ghost"
-                        onClick={() => handleLike(entry.id)}
-                        disabled={likedEntries.has(entry.id)}
-                        className={cn(
-                          "flex items-center gap-1 transition-all duration-300",
-                          likedEntries.has(entry.id) ? "text-red-500" : "hover:text-red-500",
-                        )}
-                      >
-                        <Heart className={cn("h-4 w-4", likedEntries.has(entry.id) && "fill-current")} />
-                        <span className="text-sm">{entry.likes}</span>
-                      </Button>
+                     
                     </div>
 
                     {/* Message */}
