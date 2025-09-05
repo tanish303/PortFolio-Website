@@ -1,52 +1,39 @@
 "use client"
 
 import type React from "react"
-
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Card } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { MessageSquare, Users, Heart, Star, Send } from "lucide-react"
+import { Send } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 interface GuestbookEntry {
   id: string
   name: string
   message: string
-  timestamp: Date
+  createdAt: string // will store ISO string from backend
 }
 
-// Initial dummy data for the guestbook
-const initialEntries: GuestbookEntry[] = [
-  {
-    id: "1",
-    name: "Sarah Chen",
-    message: "Amazing portfolio! The glassmorphism design is absolutely stunning. Love the smooth animations!",
-    timestamp: new Date("2024-01-15"),
-  },
-  {
-    id: "2",
-    name: "Alex Rodriguez",
-    message: "Your AI projects are impressive. The attention to detail in the UI/UX is remarkable.",
-    timestamp: new Date("2024-01-14"),
-  },
-  {
-    id: "3",
-    name: "Emily Johnson",
-    message: "The interactive elements and theme switching work flawlessly. Great job on the responsive design!",
-    timestamp: new Date("2024-01-13"),
-  },
-  
-]
-
 export function Guestbook() {
-  const [entries, setEntries] = useState<GuestbookEntry[]>(initialEntries)
+  const [entries, setEntries] = useState<GuestbookEntry[]>([])
   const [newEntry, setNewEntry] = useState({ name: "", message: "" })
   const [isSubmitting, setIsSubmitting] = useState(false)
 
-  
+  // Fetch guestbook entries from the database
+  useEffect(() => {
+    const fetchEntries = async () => {
+      try {
+        const res = await fetch("/api/guestbook")
+        const data = await res.json()
+        setEntries(data)
+      } catch (error) {
+        console.error("Failed to fetch guestbook entries:", error)
+      }
+    }
+    fetchEntries()
+  }, [])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -54,34 +41,36 @@ export function Guestbook() {
 
     setIsSubmitting(true)
 
-    // Simulate submission delay
-    await new Promise((resolve) => setTimeout(resolve, 1000))
+    try {
+      const res = await fetch("/api/guestbook", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newEntry),
+      })
 
-    const entry: GuestbookEntry = {
-      id: Date.now().toString(),
-      name: newEntry.name,
-      message: newEntry.message,
-      timestamp: new Date(),
+      if (!res.ok) throw new Error("Failed to post message")
+
+      const savedEntry: GuestbookEntry = await res.json()
+      setEntries((prev) => [savedEntry, ...prev])
+      setNewEntry({ name: "", message: "" })
+    } catch (error) {
+      console.error(error)
+    } finally {
+      setIsSubmitting(false)
     }
-
-    setEntries((prev) => [entry, ...prev])
-    setNewEntry({ name: "", message: "" })
-    setIsSubmitting(false)
   }
 
-  
-  const formatDate = (date: Date) => {
+  const formatDate = (date: string) => {
     return new Intl.DateTimeFormat("en-US", {
       month: "short",
       day: "numeric",
       year: "numeric",
-    }).format(date)
+    }).format(new Date(date))
   }
 
   return (
     <section className="py-20 px-4">
       <div className="container mx-auto">
-        {/* Section Header */}
         <div className="text-center mb-16 animate-fade-up">
           <h2 className="font-serif text-4xl md:text-5xl font-bold mb-6">Guestbook & Stats</h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -90,38 +79,28 @@ export function Guestbook() {
         </div>
 
         <div className="max-w-6xl mx-auto grid lg:grid-cols-3 gap-8">
-          {/* Stats Cards */}
+          {/* Form */}
           <div className="lg:col-span-1 space-y-6">
-           
-
-            {/* Add Message Form */}
-            <Card
-              className="p-6 bg-card/40 backdrop-blur-md border border-border/50 animate-fade-up"
-              style={{ animationDelay: "100ms" }}
-            >
+            <Card className="p-6 bg-card/40 backdrop-blur-md border border-border/50 animate-fade-up" style={{ animationDelay: "100ms" }}>
               <h3 className="font-serif text-xl font-semibold mb-4">Leave a Message</h3>
               <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <Input
-                    placeholder="Your name (min 3 characters)"
-                    value={newEntry.name}
-                    onChange={(e) => setNewEntry((prev) => ({ ...prev, name: e.target.value }))}
-                    className="bg-input/50 backdrop-blur-sm border-border/50"
-                    minLength={3}
-                    required
-                  />
-                </div>
-                <div>
-                  <Textarea
-                    placeholder="Your message (min 10 characters)"
-                    value={newEntry.message}
-                    onChange={(e) => setNewEntry((prev) => ({ ...prev, message: e.target.value }))}
-                    className="bg-input/50 backdrop-blur-sm border-border/50 resize-none"
-                    rows={4}
-                    minLength={10}
-                    required
-                  />
-                </div>
+                <Input
+                  placeholder="Your name (min 3 characters)"
+                  value={newEntry.name}
+                  onChange={(e) => setNewEntry((prev) => ({ ...prev, name: e.target.value }))}
+                  className="bg-input/50 backdrop-blur-sm border-border/50"
+                  minLength={3}
+                  required
+                />
+                <Textarea
+                  placeholder="Your message (min 10 characters)"
+                  value={newEntry.message}
+                  onChange={(e) => setNewEntry((prev) => ({ ...prev, message: e.target.value }))}
+                  className="bg-input/50 backdrop-blur-sm border-border/50 resize-none"
+                  rows={4}
+                  minLength={10}
+                  required
+                />
                 <Button
                   type="submit"
                   disabled={isSubmitting || newEntry.name.length < 3 || newEntry.message.length < 10}
@@ -148,7 +127,7 @@ export function Guestbook() {
             </Card>
           </div>
 
-          {/* Messages List */}
+          {/* Messages */}
           <div className="lg:col-span-2 space-y-4">
             <h3 className="font-serif text-2xl font-semibold mb-6 animate-fade-up" style={{ animationDelay: "200ms" }}>
               Recent Messages
@@ -165,27 +144,19 @@ export function Guestbook() {
                   )}
                   style={{ animationDelay: `${(index + 3) * 100}ms` }}
                 >
-                  {/* Glow Effect */}
                   <div className="absolute inset-0 -z-10 bg-gradient-to-r from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
                   <div className="space-y-3">
-                    {/* Header */}
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
                         <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
-                          <span className="text-sm font-semibold text-primary">
-                            {entry.name.charAt(0).toUpperCase()}
-                          </span>
+                          <span className="text-sm font-semibold text-primary">{entry.name.charAt(0).toUpperCase()}</span>
                         </div>
                         <div>
                           <h4 className="font-semibold text-foreground">{entry.name}</h4>
-                          <p className="text-xs text-muted-foreground">{formatDate(entry.timestamp)}</p>
+                          <p className="text-xs text-muted-foreground">{formatDate(entry.createdAt)}</p>
                         </div>
                       </div>
-                     
                     </div>
-
-                    {/* Message */}
                     <p className="text-muted-foreground leading-relaxed">{entry.message}</p>
                   </div>
                 </Card>
