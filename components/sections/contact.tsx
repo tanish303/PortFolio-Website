@@ -3,35 +3,52 @@
 import { Card } from "@/components/ui/card"
 import { Github, Linkedin, Mail, Phone } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { useState } from "react"
 
 const socialLinks = [
   {
     name: "GitHub",
     icon: Github,
-    url: "https://github.com/tanish",
+    url: "https://github.com/tanish303",
     color: "hover:text-gray-900 dark:hover:text-white",
+    action: "link",
   },
   {
     name: "LinkedIn",
     icon: Linkedin,
     url: "https://linkedin.com/in/tanish",
     color: "hover:text-blue-600",
+    action: "link",
   },
   {
     name: "Phone",
     icon: Phone,
-    url: "tel:+1234567890",
+    url: "+918107016363", // only the number
     color: "hover:text-green-600",
+    action: "copy", // special action
   },
   {
     name: "Email",
     icon: Mail,
-    url: "mailto:tanish@example.com",
+    url: "mailto:tanishdhingra2003@gmail.com",
     color: "hover:text-red-500",
+    action: "link",
   },
 ]
 
 export function Contact() {
+  const [copied, setCopied] = useState(false)
+
+  const handleCopy = async (text: string) => {
+    try {
+      await navigator.clipboard.writeText(text)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    } catch (err) {
+      console.error("Failed to copy: ", err)
+    }
+  }
+
   return (
     <section className="py-20 px-4 bg-muted/20">
       <div className="container mx-auto">
@@ -43,7 +60,10 @@ export function Contact() {
           </p>
         </div>
 
-        <div className="mx-auto w-full md:w-2/3 lg:w-3/5 space-y-8 animate-fade-up" style={{ animationDelay: "200ms" }}>
+        <div
+          className="mx-auto w-full md:w-2/3 lg:w-3/5 space-y-8 animate-fade-up"
+          style={{ animationDelay: "200ms" }}
+        >
           {/* Contact Info */}
           <Card className="p-8 bg-card/40 backdrop-blur-md border border-border/50">
             <h3 className="font-serif text-2xl font-semibold mb-6">Let's connect</h3>
@@ -62,23 +82,41 @@ export function Contact() {
           <Card className="p-8 bg-card/40 backdrop-blur-md border border-border/50">
             <h3 className="font-serif text-xl font-semibold mb-6 text-center">Find me online</h3>
             <div className="flex flex-wrap items-center justify-center gap-4">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.name}
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={cn(
-                    "flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-300 group",
-                    "bg-card/20 backdrop-blur-sm border border-border/30",
-                    "hover:bg-card/40 hover:scale-105 hover:shadow-lg",
-                    social.color,
-                  )}
-                >
-                  <social.icon className="h-5 w-5 transition-transform group-hover:scale-110 group-hover:rotate-12" />
-                  <span className="font-medium">{social.name}</span>
-                </a>
-              ))}
+              {socialLinks.map((social) =>
+                social.action === "copy" ? (
+                  <button
+                    key={social.name}
+                    onClick={() => handleCopy(social.url)}
+                    className={cn(
+                      "flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-300 group",
+                      "bg-card/20 backdrop-blur-sm border border-border/30",
+                      "hover:bg-card/40 hover:scale-105 hover:shadow-lg",
+                      social.color
+                    )}
+                  >
+                    <social.icon className="h-5 w-5 transition-transform group-hover:scale-110 group-hover:rotate-12" />
+                    <span className="font-medium">
+                      {copied && social.name === "Phone" ? "Copied!" : social.name}
+                    </span>
+                  </button>
+                ) : (
+                  <a
+                    key={social.name}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={cn(
+                      "flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-300 group",
+                      "bg-card/20 backdrop-blur-sm border border-border/30",
+                      "hover:bg-card/40 hover:scale-105 hover:shadow-lg",
+                      social.color
+                    )}
+                  >
+                    <social.icon className="h-5 w-5 transition-transform group-hover:scale-110 group-hover:rotate-12" />
+                    <span className="font-medium">{social.name}</span>
+                  </a>
+                )
+              )}
             </div>
           </Card>
         </div>

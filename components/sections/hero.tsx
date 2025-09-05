@@ -90,7 +90,9 @@ export function Hero() {
           <div className="space-y-6 animate-fade-up px-4 lg:px-0">
             <h1 className="font-serif text-3xl md:text-5xl lg:text-6xl font-bold leading-tight">
               Hi, I'm{" "}
-              <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Tanish</span>
+<span className="bg-gradient-to-r from-purple-900 to-purple-700 bg-clip-text text-transparent">
+  Tanish
+</span>
             </h1>
 
             {/* Subtitle with Typewriter Animation */}

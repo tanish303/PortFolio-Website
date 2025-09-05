@@ -11,6 +11,10 @@ import { FixedButtons } from "@/components/fixed-buttons"
 export default function Portfolio() {
   return (
     <main className="relative min-h-screen">
+      <audio id="bg-audio" loop hidden autoPlay muted>
+  <source src="/backgroundmusic.mp3" type="audio/mpeg" />
+</audio>
+
       {/* Fixed Navigation */}
       <Navigation />
 

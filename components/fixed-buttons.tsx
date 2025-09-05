@@ -20,10 +20,21 @@ export function FixedButtons() {
     link.click()
   }
 
-  const toggleSound = () => {
-    setIsSoundOn(!isSoundOn)
-    // In real implementation, this would control background music
+ const toggleSound = () => {
+  const audio = document.getElementById("bg-audio") as HTMLAudioElement | null
+  if (!audio) return
+
+  if (isSoundOn) {
+    audio.pause()
+    setIsSoundOn(false)
+  } else {
+    audio.muted = false  // unmute if it was muted
+    audio.play()
+    setIsSoundOn(true)
   }
+}
+
+
 
   const toggleTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark")
