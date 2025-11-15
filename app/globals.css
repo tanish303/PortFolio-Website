@@ -12,7 +12,7 @@
   --popover: rgba(241, 245, 249, 0.95);
   --popover-foreground: #1e293b;
   --primary: #6366f1;
-  --primary-foreground: #ffffff;
+  --primary-foreground: #0f0101;
   --secondary: #e2e8f0;
   --secondary-foreground: #1e293b;
   --muted: rgba(226, 232, 240, 0.5);
@@ -68,11 +68,12 @@
   --border: rgba(248, 250, 252, 0.1);
   --input: rgba(15, 23, 42, 0.8);
   --ring: rgba(192, 132, 252, 0.3);
-  --chart-1: #a855f7;
-  --chart-2: #c084fc;
-  --chart-3: #e879f9;
-  --chart-4: #f0abfc;
-  --chart-5: #fbbf24;
+     --chart-1: #f2a8f7;
+  --chart-2: #b475ff;
+  --chart-3: #7a42f4;
+  --chart-4: #5220e0;
+  --chart-5: #3b0a94;
+
   --radius: 0.75rem;
   --sidebar: rgba(15, 23, 42, 0.2);
   --sidebar-foreground: #f8fafc;

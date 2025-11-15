@@ -82,11 +82,11 @@ export function FixedButtons() {
             theme === "dark"
               ? "bg-primary/20 border border-primary/30 hover:bg-card/40 hover:scale-110"
               : "bg-accent/20 border border-accent/30 hover:bg-muted/40 hover:scale-110",
-            "animate-pulse",
+            
           )}
           title="Ask AI Assistant"
         >
-          <MessageCircle className="h-4 w-4 animate-bounce" />
+          <MessageCircle className="h-4 w-4" />
         </Button>
 
         {/* Theme Toggle Button */}

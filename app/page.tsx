@@ -17,7 +17,7 @@ export default function Portfolio() {
 
       {/* Fixed Navigation */}
       <Navigation />
-
+  
       {/* Fixed Action Buttons */}
       <FixedButtons />
 

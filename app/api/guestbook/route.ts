@@ -9,7 +9,7 @@ export async function GET() {
   return new Response(JSON.stringify(entries), { status: 200 });
 }
 
-export async function POST(req: Request) {
+export async function POST(req: Request) { 
   const body = await req.json();
   const { name, message } = body;
 
