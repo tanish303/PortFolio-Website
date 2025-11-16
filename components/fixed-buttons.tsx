@@ -13,12 +13,12 @@ export function FixedButtons() {
   const [isAIOpen, setIsAIOpen] = useState(false)
 
   const handleResumeDownload = () => {
-    // Create a dummy PDF download - in real implementation, this would be a real resume
-    const link = document.createElement("a")
-    link.href = "/placeholder.svg?height=800&width=600"
-    link.download = "Tanish_Resume.pdf"
-    link.click()
-  }
+  const link = document.createElement("a");
+  link.href = "/TANISH_RESUME.pdf";  // file inside /public
+  link.download = "TANISH_RESUME.pdf"; 
+  link.click();
+};
+
 
  const toggleSound = () => {
   const audio = document.getElementById("bg-audio") as HTMLAudioElement | null

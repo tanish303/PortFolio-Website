@@ -51,33 +51,56 @@ export function AIAssistant({ isOpen, onClose }: AIAssistantProps) {
     scrollToBottom()
   }, [messages])
 
-  const handleSend = () => {
-    if (!inputValue.trim()) return
+ const handleSend = async () => {
+  if (!inputValue.trim()) return;
 
-    const userMessage: Message = {
-      id: Date.now().toString(),
-      text: inputValue,
-      isUser: true,
+  const userMessage: Message = {
+    id: Date.now().toString(),
+    text: inputValue,
+    isUser: true,
+    timestamp: new Date(),
+  };
+
+  setMessages((prev) => [...prev, userMessage]);
+  setInputValue("");
+  setIsTyping(true);
+
+  try {
+    const res = await fetch("/api/ask", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ message: userMessage.text }),
+});
+
+
+    const data = await res.json();
+
+
+    const aiResponse: Message = {
+      id: (Date.now() + 1).toString(),
+      text: data.reply || "Sorry, I couldn't process that.",
+      isUser: false,
       timestamp: new Date(),
-    }
+    };
 
-    setMessages((prev) => [...prev, userMessage])
-    setInputValue("")
-    setIsTyping(true)
-
-    // Simulate AI typing and response
-    setTimeout(() => {
-      const randomResponse = aiResponses[Math.floor(Math.random() * aiResponses.length)]
-      const aiResponse: Message = {
-        id: (Date.now() + 1).toString(),
-        text: randomResponse,
+    setMessages((prev) => [...prev, aiResponse]);
+  } catch (err) {
+    console.log(err);
+    setMessages((prev) => [
+      ...prev,
+      {
+        id: "error-" + Date.now(),
+        text: "Something went wrong. Please try again.",
         isUser: false,
         timestamp: new Date(),
-      }
-      setMessages((prev) => [...prev, aiResponse])
-      setIsTyping(false)
-    }, 1500)
+      },
+    ]);
   }
+
+  setIsTyping(false);
+};
+
+
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {

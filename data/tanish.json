@@ -1,0 +1,149 @@
+{
+  "basic": {
+    "name": "Tanish Dhingra",
+    "title": "Full-Stack Developer (MERN + WebSockets + Real-time Systems)",
+    "shortBio": "Full-stack developer who learns by building, not by theory. Strong focus on clean, fast, real-time applications."
+  },
+
+  "bio": {
+    "longBio": "I started coding through YouTube tutorials, slowly improving by building projects and gaining real experience from internships. I'm an introvert, an overthinker, highly logical, sometimes lame with jokes, very selective, and perfection-driven. Anxiety has been with me since childhood, but I keep moving because staying idle makes things worse. I'm a mix of depressive, narcissistic, self-hating yet extremely potential-driven. Video games, friends, and sleep are my coping mechanisms. I value perfection in my work and believe in learning through doing, not by theory. My personality is quiet but sharp, and I approach problems by eliminating the wrong paths until only the best solution remains."
+  },
+
+  "goals": {
+    "shortTerm": "Happiness and money.",
+    "longTerm": "Will explore different paths after gaining proper experience and decide accordingly."
+  },
+
+  "personality": {
+    "coreTraits": [
+      "Introvert",
+      "Overthinking expert",
+      "Logical or lame jokes",
+      "Selective and choosy",
+      "Perfectionist",
+      "Depressive tendencies",
+      "Narcissistic elements",
+      "Self-critical",
+      "Anxiety since childhood"
+    ],
+    "copingMechanisms": ["Video games", "Friends", "Sleep"],
+    "workStyle": "I can work anywhere as long as I have earphones and noise cancellation with YouTube playing.",
+    "motivation": "Nothing specific motivates me, but I can't sit idle. Staying busy keeps my anxiety low, and I know my potential, so I push myself not to waste it.",
+    "valuesInWork": ["Perfection"],
+    "strengths": ["Never satisfied", "Delusional confidence"],
+    "funFacts": ["Every decision in life feels like a fun fact."]
+  },
+
+  "skills": {
+    "programmingLanguages": ["Java", "C++", "Python", "JavaScript", "SQL", "C"],
+    "frontend": ["React.js", "HTML", "CSS", "Tailwind CSS"],
+    "backend": ["Node.js", "Express.js"],
+    "databases": ["MongoDB", "MySQL", "PostgreSQL"],
+    "tools": ["Git", "Docker", "VS Code", "Postman", "Figma", "Render"],
+    "otherSkills": ["Logical reasoning", "Problem solving", "Debugging", "Teamwork"]
+  },
+
+  "education": {
+    "college": {
+      "name": "BML Munjal University",
+      "degree": "B.Tech in Computer Science Engineering",
+      "location": "Gurugram, India",
+      "duration": "2022–2026",
+      "gpa": "7.53 / 10"
+    },
+    "school": {
+      "name": "Children's Academy School",
+      "location": "Alwar, Rajasthan",
+      "10th": "92%",
+      "12th": "81%"
+    }
+  },
+
+  "experience": [
+    {
+      "company": "Coding Blocks",
+      "role": "Web Developer",
+      "duration": "June 2024 – August 2024",
+      "details": [
+        "Collaborated in a team of 5 to deliver 3+ responsive web applications, improving load performance by 25%.",
+        "Built reusable UI components and reduced redundant code by 30%.",
+        "Debugged and resolved 15+ frontend and backend issues following Agile practices."
+      ]
+    }
+  ],
+
+  "achievements": [
+    "Secured 4th place at Smart India Hackathon (SIH) 2023",
+    "Built and deployed multiple full-stack and real-time applications"
+  ],
+
+  "projects": [
+    {
+      "name": "Tweniq",
+      "tech": ["MERN", "WebSockets", "JWT", "React"],
+      "highlights": [
+        "Dual-mode platform: Social + Professional",
+        "Two separate profiles for each user with 2 separate chat identities",
+        "40+ API endpoints",
+        "Real-time chat",
+        "Polls, likes, saves, comments",
+        "Social and professional feeds"
+      ],
+      "whyBuilt": "Wanted a full solo project to learn everything myself—from CSS to deployment.",
+      "challenges": "Nothing major.",
+      "roadblocks": ["WebSockets"],
+      "whatLearned": "Experience in full-stack, real deployments, and real-time systems.",
+      "uniqueFeatures": [
+        "Dual profile system",
+        "Two separate chat accounts per user",
+        "Complete full-stack structure built solo"
+      ],
+      "thoughtProcess": "Planned structure in 2–3 hours with AI. Started with basics like login/signup and kept building layer by layer."
+    },
+    {
+      "name": "CopyWizz",
+      "tech": ["Electron", "Node.js", "React", "Tailwind", "Gemini API"],
+      "highlights": [
+        "Desktop-level integration",
+        "Global hotkey activation",
+        "Instant AI explanations from any app"
+      ],
+      "whyBuilt": "A useful idea clicked in mind; wanted to build something practical.",
+      "challenges": ["Preload file connections"],
+      "whatLearned": ["Electron.js", "Desktop integration", "OS-level handling"],
+      "uniqueFeatures": ["Explain anything on screen with a single click"],
+      "thoughtProcess": "Planned similarly to Tweniq — start simple, then expand."
+    },
+    {
+      "name": "Browser Vulnerability Analyzer",
+      "tech": ["Python", "PyCryptodome", "Telegram API"],
+      "highlights": [
+        "Extracts sensitive browser data",
+        "Simulates exfiltration",
+        "Analyzes passwords, cookies, history, bookmarks"
+      ],
+      "whyBuilt": "To explore cybersecurity risks and browser data extraction.",
+      "challenges": ["Encryption behavior and parsing data formats"],
+      "whatLearned": ["Understanding of browser internals", "Python automation"],
+      "uniqueFeatures": ["Automated data extraction and Telegram bot integration"],
+      "thoughtProcess": "Explore cybersecurity through a practical tool rather than reading about it."
+    }
+  ],
+
+  "interests": {
+    "gym": "I don't like going to the gym, but I go because it helps my mental health and physical fitness.",
+    "problemSolving": "I enjoy solving LeetCode problems.",
+    "gaming": "Play video games daily."
+  },
+
+  "contact": {
+    "email": "tanish.dhingra.22cse@bmu.edu.in",
+    "phone": "8107016363",
+    "github": "https://github.com/tanish303",
+    "linkedin": "https://www.linkedin.com/in/tanish-dhingraa/"
+  },
+
+  "roles": {
+    "interestedRoles": ["Frontend Developer", "Backend Developer", "Full-Stack Developer"]
+  }
+}
