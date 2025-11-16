@@ -46,6 +46,27 @@ export function AIAssistant({ isOpen, onClose }: AIAssistantProps) {
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
   }
+// Always scroll to bottom when chat opens
+useEffect(() => {
+  if (isOpen) {
+    setTimeout(() => {
+      scrollToBottom();
+    }, 50);
+  }
+}, [isOpen]);
+
+// Disable background scrolling when AI window is open
+useEffect(() => {
+  if (isOpen) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "";
+  }
+
+  return () => {
+    document.body.style.overflow = "";
+  };
+}, [isOpen]);
 
   useEffect(() => {
     scrollToBottom()
