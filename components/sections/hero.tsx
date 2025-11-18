@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button"
 import { ChevronDown, MessageCircle, Mail } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { useState, useEffect } from "react"
+// 1. Import the global hook
+import { useAI } from "@/components/providers/ai-provider"
 
 function TypewriterText() {
   const sentences = ["Web Developer", "DSA Enthusiast", "Software Developer"]
@@ -57,6 +59,9 @@ function TypewriterText() {
 }
 
 export function Hero() {
+  // 2. Get the setter from the global store
+  const { setIsOpen } = useAI()
+
   const handleScrollToProjects = () => {
     const projectsSection = document.getElementById("projects")
     if (projectsSection) {
@@ -72,8 +77,8 @@ export function Hero() {
   }
 
   const handleAIAssistantClick = () => {
-    // This would trigger the AI assistant - for now, we'll scroll to contact
-    handleContactClick()
+    // 3. Use the global state setter to open the modal
+    setIsOpen(true)
   }
 
   return (
@@ -90,9 +95,9 @@ export function Hero() {
           <div className="space-y-6 animate-fade-up px-4 lg:px-0">
             <h1 className="font-serif text-3xl md:text-5xl lg:text-6xl font-bold leading-tight">
               Hi, I'm{" "}
-<span className="bg-gradient-to-r from-purple-900 to-purple-700 bg-clip-text text-transparent">
-  Tanish
-</span>
+              <span className="bg-gradient-to-r from-purple-900 to-purple-700 bg-clip-text text-transparent">
+                Tanish
+              </span>
             </h1>
 
             {/* Subtitle with Typewriter Animation */}

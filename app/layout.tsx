@@ -3,6 +3,10 @@ import type { Metadata } from "next"
 import { Anton, Inter } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
+import { AIProvider } from "@/components/providers/ai-provider"
+
+// 👉 Import the AI popup
+import AIPopup from "@/components/ai-popup"
 
 const anton = Anton({
   subsets: ["latin"],
@@ -46,9 +50,15 @@ html {
 }
         `}</style>
       </head>
+
       <body className={`${anton.variable} ${inter.variable} antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
-          {children}
+          <AIProvider>
+            {children}
+
+            {/* ⭐ Global AI Popup (appears after 5 sec) */}
+            <AIPopup />
+          </AIProvider>
         </ThemeProvider>
       </body>
     </html>
